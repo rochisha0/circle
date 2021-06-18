@@ -4,9 +4,13 @@
     <%- include ('partials/head.ejs'); -%>
 </head>
 <body class="container">
-
     <header class="site-header">
         <%- include ('partials/header.ejs'); -%>
     </header>
+    <div id="video-slides">
+        <%- include ('partials/video-slides.ejs'); -%>
+    </div>
+    <script src="script.js"> </script>
+    <script>console.log("<%= dashID %>")</script>
 </body>
 </html>
