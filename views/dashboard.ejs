@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        const DASH_ID = "<%= dashID %>";
+    </script>
     <%- include ('partials/head.ejs'); -%>
 </head>
 <body class="container">
@@ -11,6 +14,6 @@
         <%- include ('partials/video-slides.ejs'); -%>
     </div>
     <script src="script.js"> </script>
-    <script>console.log("<%= dashID %>")</script>
+    
 </body>
 </html>
