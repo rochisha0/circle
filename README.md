@@ -7,3 +7,4 @@
 * Install nodemon `npm install -g nodemon`
 * Run `npm install` for downloading the dependencies
 * Run `nodemon server.js`
+* The app is running on `localhost:5000`
