@@ -1,0 +1,51 @@
+.site-identity {
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.logo {
+  flex: 5%;
+  padding: 5px;
+  padding-top: 20px;
+}
+
+.logo img{
+  height: 40px;
+  width: 40px;
+}
+
+.name {
+  flex: 7%;
+  padding-top: 20px;
+  padding-right: 20px;
+  
+}
+
+.boxed{
+  flex: 85%;
+  padding: 5px;
+  background-color: rgb(239, 245, 248);
+  border-radius: 20px;
+  max-height: 75px;
+}
+
+a {
+  text-decoration: none;
+  font-family: 'Fredoka One', cursive;
+  color: #000;
+}
+
+.boxed h4 {
+  font-family: Verdana;
+  font-size: 1.2em;
+  margin: 0.5em 0 0 0;
+  padding-left: 10px;
+  padding-bottom: 4px;
+}
+
+.boxed p {
+  font-family: Verdana;
+  font-size: 0.9em;
+  padding-left: 10px;
+  color: grey;
+}

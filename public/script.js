@@ -1,16 +1,20 @@
 const socket = io('/')
-const videoGrid = document.getElementById('video-slides')
+const videoSlides = document.getElementById('video-slides')
 const peer = new Peer()
 const myVideo = document.createElement('video')
-myVideo.muted = true
+
+// Mute your own video
+myVideo.muted = true  
 const peers = {}
 
-let myVideoStream
+let videoStream
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
 }).then(stream => {
-  myVideoStream = stream;
+
+  //Append your video
+  videoStream = stream;
   addVideoFrontend(myVideo, stream)
 
   //Answer call
@@ -26,7 +30,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userID => {
-    connectToNewUser(userID, myVideoStream)
+    connectTheNewUser(userID, videoStream)
   })
 })
 
@@ -35,7 +39,7 @@ peer.on('open', id => {
 })
 
 //Call new user
-function connectToNewUser(userID, stream) {
+function connectTheNewUser(userID, stream) {
   const call = peer.call(userID, stream)
   const video = document.createElement('video')
   call.on('stream', function(remoteStream) {
@@ -49,5 +53,5 @@ function addVideoFrontend(video, stream) {
   video.addEventListener('loadedmetadata', () => {
     video.play()
   })
-  videoGrid.append(video)
+  videoSlides.append(video)
 }
