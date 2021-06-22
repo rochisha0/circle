@@ -11,4 +11,22 @@ This is a video conferencing application.
 
 ## Steps for video-calling
 
-* Share the unique link to your peer for call him/ her.
+* Share the unique link to your peer for video calling him/ her.
+
+## Tech stack used
+
+* NodeJS
+* PeerJS
+* Socket.io
+* Bootstrap
+
+## Deliverables
+
+* Ability for multiple people to connect on the call
+* Ability to mute your audio
+* Ability to mute your video
+* Screensharing 
+* Real time chat
+* Authentication using OAuth*
+* Recording video*
+
