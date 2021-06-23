@@ -1,0 +1,28 @@
+.button {
+    background-color: white; 
+    margin: 7px;
+    border: none;
+    color: black;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+  }
+
+  .button:hover {
+     background-color: rgb(245, 239, 239);
+  }
+  
+  .wrapper {
+      display: inline-block;
+  }
+  
+  .button__name {
+      text-align: center;
+      color: rgb(82, 82, 82);
+      font-size: smaller;
+      font-family: Verdana;
+  }

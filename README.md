@@ -27,6 +27,7 @@ This is a video conferencing application.
 * Ability to mute your video
 * Screensharing 
 * Real time chat
+* List of Attendees
 * Authentication using OAuth*
 * Recording video*
 

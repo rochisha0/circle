@@ -34,7 +34,7 @@ body {
     padding: 5px;
 }
 
- .controls {
+.controls {
     padding: 5px;
     background-color: rgb(239, 245, 248);
     border-radius: 20px;
@@ -42,30 +42,4 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-
-.button {
-  background-color: white; 
-  margin: 7px;
-  border: none;
-  color: black;
-  border-radius: 50%;
-  text-align: center;
-  text-decoration: none;
-  font-size: 10px;
-  width: 45px;
-  height: 45px;
-  cursor: pointer;
-}
-
-.wrapper {
-    display: inline-block;
-}
-
-.button__name {
-    text-align: center;
-    color: rgb(82, 82, 82);
-    font-size: smaller;
-    font-family: Verdana;
 }
