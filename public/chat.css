@@ -7,22 +7,23 @@
 
 .message__history {
     padding: 5px;
+    display: flex;
 }
 
-.outgoing__message {
+.sent__message p {
     background-color: rgb(169, 236, 210);
-    border-radius: 19px;
+    border-radius: 10px;
     padding: 5px;
     max-width: 50%;
-
+    margin: 0;
 }
 
-.incoming__message {
+.received__message p {
     background-color: rgb(239, 245, 248);
-    border-radius: 19px;
+    border-radius: 10px;
     padding: 5px;
-    max-width: 75%;
-    
+    max-width: 75%; 
+    margin: 0;
 }
 
 .received__message, .sent__message {
@@ -32,11 +33,15 @@
 .message__author {
     font-size: x-small;
     text-align: left;
+    color: rgb(107, 106, 106);
+    padding-right: 5px;
 }
 
 .time_date {
-    font-size: x-small;
+    font-size: xx-small;
     text-align: right;
+    padding-right: 5px;
+    color: rgb(179, 178, 178);
 }
 
 .message_form {

@@ -30,25 +30,20 @@ const addNewMessage = ({ user, message }) => {
   const formattedTime = time.toLocaleString("en-US", { hour: "numeric", minute: "numeric" });
 
   const receivedMsg = `
-  <li class="incoming__message">
+  <div class="incoming__message">
     <div class="received__message">
+    <span class="message__author">${user}</span>
       <p>${message}</p>
-      <div class="message__info">
-        <span class="message__author">${user}</span>
-        <span class="time_date">${formattedTime}</span>
-      </div>
     </div>
-  </li>`;
+  </div>`;
 
   const myMsg = `
-  <li class="outgoing__message">
+  <div class="outgoing__message">
     <div class="sent__message">
+    <span class="message__author"> You </span>
       <p>${message}</p>
-      <div class="message__info">
-        <span class="time_date">${formattedTime}</span>
-      </div>
     </div>
-  </li>`;
+  </div>`;
 
   messageBox.innerHTML += user === userName ? myMsg : receivedMsg;
 };
