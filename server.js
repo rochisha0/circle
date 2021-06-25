@@ -35,13 +35,21 @@ app.get('/:num', (req, res) => {
     res.render('dashboard', { dashID: req.params.num })
 })
 
+const users = new Set();
+
 io.on('connection', socket => {
-    socket.on('join-room', (dashID, userID) => {
+    socket.on('join-room', (dashID, userID, userName) => {
       socket.join(dashID);
-      socket.to(dashID).emit('user-connected', userID);
+      users[socket.id] = userName
+      socket.to(dashID).emit('user-connected', userID, userName);
+
+      socket.on('chat-message', (message) => {
+        io.to(dashID).emit('chat-message', { message: message, name: userName })
+      })
 
       socket.on('disconnect', () => {
-        socket.to(dashID).emit('user-disconnected', userID)
+        socket.to(dashID).emit('user-disconnected', userID);
+        delete users[socket.id]
       })
     })
 })

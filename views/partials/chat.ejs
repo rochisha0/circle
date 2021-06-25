@@ -1,16 +1,18 @@
-<h1 class="room-message"></h1>
-    <div class="window">
-        <div class="chat-message">
-            <div id="output"></div>
-            <div id="feedback"></div>
-        </div>
-        <div class='fields'>
-            <input type="text" id="message" placeholder="Enter message">
-            <button id="send">Send</button>
-        </div>
+<div class="container">
+    <div class="inbox">
+      <div class="inbox__people">
+        <h4>Active users</h4>
+      </div>
+      <div class="inbox__messages">
+        <ul class="messages__history"></ul>
+        <div class="fallback"></div>
+      </div>
     </div>
-    <div class="online">
-        <p class="users-online">Users Online</p>
-        <div class="users">
-        </div>
-    </div>
+
+    <form class="message_form">
+      <input type="text" class="message_form__input" placeholder="Type a message" />
+      <button class="message_form__button" type="submit">
+        Enter
+      </button>
+    </form>
+  </div>
