@@ -158,6 +158,34 @@ const playStop = () => {
   }
 }
 
+//Share screen
+document.getElementById("shareScreen")
+  .addEventListener("click", function() {
+    navigator.mediaDevices.getDisplayMedia({cursor:true})
+    .then(screenStream => {
+      Object.values(peers).map(peer => {
+        peer.peerConnection?.getSenders().map(sender => {
+            if(sender.track.kind == "video") {
+              sender.replaceTrack(screenStream.getVideoTracks()[0])
+              .then(res => console.log(res));
+            }
+        })
+      });
+      myVideo.srcObject=screenStream
+
+      screenStream.getTracks()[0].onended = () => {
+        Object.values(peers).map(peer => {
+          peer.peerConnection?.getSenders().map(sender => {
+              if(sender.track.kind == "video") {
+                sender.replaceTrack(callStream.getVideoTracks()[0]);
+              }
+          })
+        });
+        myVideo.srcObject=videoStream
+      }
+  })
+})
+
 const micOn = () => {
   const html = `
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
