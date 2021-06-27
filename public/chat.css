@@ -3,11 +3,17 @@
     border-radius: 20px;
     height: 100vh;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inbox {
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 .message__history {
     padding: 5px;
-    display: flex;
 }
 
 .sent__message p {
@@ -15,7 +21,9 @@
     border-radius: 10px;
     padding: 5px;
     max-width: 50%;
-    margin: 0;
+    margin: 2px;
+    margin-right: 0;
+    font-family: Verdana;
 }
 
 .received__message p {
@@ -24,6 +32,7 @@
     padding: 5px;
     max-width: 75%; 
     margin: 0;
+    font-family: Verdana;
 }
 
 .received__message, .sent__message {
@@ -35,6 +44,7 @@
     text-align: left;
     color: rgb(107, 106, 106);
     padding-right: 5px;
+    font-family: Verdana;
 }
 
 .time_date {
@@ -45,11 +55,13 @@
 }
 
 .message_form {
-    padding: 22px 12px;
     display: flex;
 }
 
 .message_form__input {
     flex-grow: 1;
     border: none;
+    outline: none;
+    display: flex;
+    padding: 22px 12px;
 }

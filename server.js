@@ -43,7 +43,7 @@ io.on('connection', socket => {
       users[socket.id] = userName
       socket.to(dashID).emit('user-connected', userID, userName);
 
-      socket.on('chat-message', (message) => {
+      socket.on('chat-message', (message, userName) => {
         io.to(dashID).emit('chat-message', { message: message, name: userName })
       })
 
