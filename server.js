@@ -9,9 +9,6 @@ const port = process.env.PORT || 5000;
 //http server
 const server = require("http").Server(app);
 
-//UUID for specific rooms
-const { v4: uuidv4 } = require("uuid");
-
 //Import socket.io
 const io = require("socket.io")(server);
 
@@ -26,14 +23,21 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 app.use("/peerjs", peerServer);
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
-  res.redirect(`/${uuidv4()}`);
+  res.render("index");
 });
 
-app.get("/:num", (req, res) => {
-  res.render("dashboard", { dashID: req.params.num });
-});
+app.post('/room', (req, res) => {
+  roomname = req.body.roomname;
+  username = req.body.username;
+  res.redirect(`/${roomname}?username=${username}`)
+})
+
+app.get('/:num', (req, res)=>{
+  res.render('dashboard', { dashID: req.params.num })
+})
 
 const users = new Set();
 

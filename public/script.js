@@ -5,6 +5,7 @@ const myVideo = document.createElement("video");
 // Mute your own stream
 myVideo.muted = true;
 
+//get html elements
 const inboxPeople = document.querySelector(".inbox__people");
 const inputField = document.querySelector(".message_form__input");
 const messageForm = document.querySelector(".message_form");
@@ -52,8 +53,10 @@ const addNewMessage = ({ user, message }) => {
   messageBox.innerHTML += user === userName ? myMsg : receivedMsg;
 };
 
-//Input username from prompt
-const userName = prompt("What is your name?");
+//Fetch username from url
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const userName = urlParams.get('username');
 //addToUsersBox(userName);
 
 const peers = {};
