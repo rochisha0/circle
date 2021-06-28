@@ -22,12 +22,15 @@ This is a video conferencing application.
 
 ## Deliverables
 
-* Ability for multiple people to connect on the call
-* Ability to mute your audio
-* Ability to mute your video
-* Screensharing 
-* Real time chat
+* Leave meeting
+* UI
+* Joining link
 * List of Attendees
 * Authentication using OAuth*
 * Recording video*
 
+## Features included
+
+* Multi-party chat (video/ text)
+* Share screen
+* Ability to mute and unmute video/audio

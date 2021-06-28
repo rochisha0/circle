@@ -9,7 +9,7 @@
   padding-top: 20px;
 }
 
-.logo img{
+.logo img {
   height: 40px;
   width: 40px;
 }
@@ -18,10 +18,9 @@
   flex: 7%;
   padding-top: 20px;
   padding-right: 20px;
-  
 }
 
-.boxed{
+.boxed {
   flex: 85%;
   padding: 5px;
   background-color: rgb(239, 245, 248);
@@ -31,7 +30,7 @@
 
 a {
   text-decoration: none;
-  font-family: 'Fredoka One', cursive;
+  font-family: "Fredoka One", cursive;
   color: #000;
 }
 
