@@ -1,5 +1,4 @@
 # Circle
-This is a video conferencing application.
 
 ## Steps to run the project
 
@@ -8,10 +7,6 @@ This is a video conferencing application.
 * Run `npm install` for downloading the dependencies
 * Run `nodemon server.js`
 * The app is running on `localhost:5000`
-
-## Steps for video-calling
-
-* Share the unique link to your peer for video calling him/ her.
 
 ## Tech stack used
 
