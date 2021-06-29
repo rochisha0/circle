@@ -11,6 +11,7 @@ const inputField = document.querySelector(".message_form__input");
 const messageForm = document.querySelector(".message_form");
 const messageBox = document.querySelector(".messages__history");
 const fallback = document.querySelector(".fallback");
+const users = document.querySelector('.users');
 
 //add names in attendees
 const addToUsersBox = (userName) => {
@@ -57,7 +58,6 @@ const addNewMessage = ({ user, message }) => {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const userName = urlParams.get('username');
-//addToUsersBox(userName);
 
 const peers = {};
 
@@ -92,6 +92,7 @@ navigator.mediaDevices
       connectTheNewUser(userID, videoStream);
     });
 
+    //Input message
     messageForm.addEventListener("submit", (e) => {
       e.preventDefault();
       if (!inputField.value) {
@@ -107,6 +108,8 @@ navigator.mediaDevices
     });
 
     socket.on("chat-message", function (data) {
+
+      //Append message
       addNewMessage({
         user: data.message.username,
         message: data.message.message,
@@ -117,6 +120,14 @@ navigator.mediaDevices
 peer.on("open", (id) => {
   socket.emit("join-room", DASH_ID, id, userName);
 });
+
+socket.on('online-users', (data) =>{
+  console.log(data);
+  users.innerHTML = ''
+  data.forEach(user => {
+      users.innerHTML += `<p>${user}</p>`
+  });
+})
 
 socket.on("user-disconnected", (userID) => {
   if (peers[userID]) peers[userID].close();

@@ -24,10 +24,8 @@ This is a video conferencing application.
 
 * Leave meeting
 * UI
-* Joining link
 * List of Attendees
-* Authentication using OAuth*
-* Recording video*
+* Recording video
 
 ## Features included
 
