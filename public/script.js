@@ -1,6 +1,10 @@
 const socket = io("/");
 const videoSlides = document.getElementById("video-slides");
-const peer = new Peer();
+const peer = new Peer({
+  secure: true,
+  host: 'peerjs-server.herokuapp.com',
+  port: '443',
+});
 const myVideo = document.createElement("video");
 // Mute your own stream
 myVideo.muted = true;
