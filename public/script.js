@@ -13,20 +13,6 @@ const messageBox = document.querySelector(".messages__history");
 const fallback = document.querySelector(".fallback");
 const users = document.querySelector('.users');
 
-//add names in attendees
-const addToUsersBox = (userName) => {
-  if (!!document.querySelector(`.${userName}-userlist`)) {
-    return;
-  }
-
-  const userBox = `
-    <div class="chat_ib ${userName}-userlist">
-      <h5>${userName}</h5>
-    </div>
-  `;
-  inboxPeople.innerHTML += userBox;
-};
-
 //add message in chat box
 const addNewMessage = ({ user, message }) => {
   const time = new Date();
@@ -152,13 +138,17 @@ function addVideoFrontend(video, stream) {
 }
 
 let chat = 0;
+let userList = 0;
 //Toggle chat container
 const toggleChat = () => {
+  console.log(userList, chat)
   if(!chat){
     //document.querySelector(".chat").style.display = "flex";
+    document.querySelector(".attendee-container").style.display = "none";
     document.querySelector(".chat-container").style.display = "flex";
     document.querySelector(".dashboard-left").style.flex = "0.8";
     chat = 1;
+    userList = 0;
   }
     //chatOff();
   else{
@@ -166,6 +156,23 @@ const toggleChat = () => {
     document.querySelector(".chat-container").style.display = "none";
     document.querySelector(".dashboard-left").style.flex = "1";
     chat = 0;
+  } 
+};
+
+const toggleUserList = () => {
+  console.log(userList, chat)
+  if(!userList){
+    document.querySelector(".chat-container").style.display = "none";
+    document.querySelector(".attendee-container").style.display = "flex";
+    document.querySelector(".dashboard-left").style.flex = "0.8";
+    userList = 1;
+    chat = 0;
+  }
+    
+  else{
+    document.querySelector(".attendee-container").style.display = "none";
+    document.querySelector(".dashboard-left").style.flex = "1";
+    userList = 0;
   } 
 };
 

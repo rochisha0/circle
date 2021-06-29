@@ -1,0 +1,9 @@
+.attendee-container {
+    background-color: white;
+    border-radius: 20px;
+    flex-direction: column;
+    height: 100vh;
+    display: none;
+    flex: 0.2;
+    padding: 10px;
+}
