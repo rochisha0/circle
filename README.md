@@ -14,15 +14,3 @@
 * PeerJS
 * Socket.io
 * Bootstrap
-
-## Deliverables
-
-* Leave meeting
-* UI
-* Recording video
-
-## Features included
-
-* Multi-party chat (video/ text)
-* Share screen
-* Ability to mute and unmute video/audio
