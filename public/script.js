@@ -52,8 +52,7 @@ const userName = urlParams.get('username');
 const peers = {};
 
 let videoStream;
-navigator.mediaDevices
-  .getUserMedia({
+navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true,
   })
@@ -72,6 +71,11 @@ navigator.mediaDevices
         call.on("stream", function (remoteStream) {
           addVideoFrontend(video, remoteStream);
         });
+
+        call.on("close", () => {
+          video.remove();
+      })
+      peers[call.peer] = call;
       },
       function (err) {
         console.log("Failed to get local stream", err);
@@ -209,8 +213,8 @@ document.getElementById("shareScreen").addEventListener("click", function () {
   navigator.mediaDevices
     .getDisplayMedia({ cursor: true })
     .then((screenStream) => {
-      Object.values(peers).map((peer) => {
-        peer.peerConnection?.getSenders().map((sender) => {
+      Object.values(peers).map((myPeer) => {
+        myPeer.peerConnection?.getSenders().map((sender) => {
           if (sender.track.kind == "video") {
             sender
               .replaceTrack(screenStream.getVideoTracks()[0])
@@ -221,8 +225,8 @@ document.getElementById("shareScreen").addEventListener("click", function () {
       myVideo.srcObject = screenStream;
 
       screenStream.getTracks()[0].onended = () => {
-        Object.values(peers).map((peer) => {
-          peer.peerConnection?.getSenders().map((sender) => {
+        Object.values(peers).map((myPeer) => {
+          myPeer.peerConnection?.getSenders().map((sender) => {
             if (sender.track.kind == "video") {
               sender.replaceTrack(callStream.getVideoTracks()[0]);
             }
@@ -232,6 +236,13 @@ document.getElementById("shareScreen").addEventListener("click", function () {
       };
     });
 });
+
+document.getElementById("endCall")
+  .addEventListener("click", function() {
+    myVideo.remove()
+    peer.destroy()
+    history.go(-1);
+  })
 
 //Toggle micbutton
 const micOn = () => {

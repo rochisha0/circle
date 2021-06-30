@@ -25,10 +25,12 @@ app.use(express.static("public"));
 app.use("/peerjs", peerServer);
 app.use(express.urlencoded({ extended: false }));
 
+//rendering the index first
 app.get("/", (req, res) => {
   res.render("index");
 });
 
+//posting the values from index and redirecting to dashboard
 app.post('/room', (req, res) => {
   roomname = req.body.roomname;
   username = req.body.username;
@@ -41,6 +43,7 @@ app.get('/:num', (req, res)=>{
 
 const users = {};
 
+//getting users
 function getUsers(arr){
   onlineUsers = []
   arr.forEach((onlineUser) => {
@@ -65,23 +68,32 @@ io.on("connection", (socket) => {
       users[dashID] = [user];
     }
 
+    console.log(users[dashID][socket.id]);
+
     //Emitting username to client
     socket.to(dashID).emit("user-connected", userID, userName);
 
     //Send online users array
     io.to(dashID).emit('online-users', getUsers(users[dashID]))
 
+    //Emitting chat message
     socket.on("chat-message", (message, userName) => {
       io.to(dashID).emit("chat-message", { message: message, name: userName });
     });
 
     //Remove user from memory when they disconnect
     socket.on("disconnect", () => {
+      console.log("disconnect")
       socket.to(dashID).emit("user-disconnected", userID);
-      delete users[socket.id];
+      users[dashID].forEach((user, index) => {
+      if(user[socket.id]){
+          console.log(user[socket.id])
+          users[dashID].splice(index, 1)
+      }
       //Send online users array
-      socket.to(roomname).emit('online-users', getUsers(users[roomname]))
+      io.to(dashID).emit('online-users', getUsers(users[dashID]))
   })
+})
 })
 })
 
