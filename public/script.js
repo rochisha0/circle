@@ -16,6 +16,7 @@ const messageForm = document.querySelector(".message_form");
 const messageBox = document.querySelector(".messages__history");
 const fallback = document.querySelector(".fallback");
 const users = document.querySelector('.users');
+const popUp = document.querySelector('.popuptext');
 
 //add message in chat box
 const addNewMessage = ({ user, message }) => {
@@ -116,7 +117,6 @@ peer.on("open", (id) => {
 });
 
 socket.on('online-users', (data) =>{
-  console.log(data);
   users.innerHTML = ''
   data.forEach(user => {
       users.innerHTML += `<p>${user}</p>`
@@ -145,25 +145,23 @@ function addVideoFrontend(video, stream) {
   videoSlides.append(video);
 }
 
-let chat = 0;
-let userList = 0;
+let chat = false;
+let userList = false;
 //Toggle chat container
 const toggleChat = () => {
   console.log(userList, chat)
   if(!chat){
-    //document.querySelector(".chat").style.display = "flex";
     document.querySelector(".attendee-container").style.display = "none";
     document.querySelector(".chat-container").style.display = "flex";
     document.querySelector(".dashboard-left").style.flex = "0.8";
-    chat = 1;
-    userList = 0;
+    chat = !chat;
+    userList = false;
   }
     //chatOff();
   else{
-    //document.querySelector(".chat").style.display = "none";
     document.querySelector(".chat-container").style.display = "none";
     document.querySelector(".dashboard-left").style.flex = "1";
-    chat = 0;
+    chat = !chat;
   } 
 };
 
@@ -173,14 +171,14 @@ const toggleUserList = () => {
     document.querySelector(".chat-container").style.display = "none";
     document.querySelector(".attendee-container").style.display = "flex";
     document.querySelector(".dashboard-left").style.flex = "0.8";
-    userList = 1;
-    chat = 0;
+    userList = !userList;
+    chat = false;
   }
     
   else{
     document.querySelector(".attendee-container").style.display = "none";
     document.querySelector(".dashboard-left").style.flex = "1";
-    userList = 0;
+    userList = !userList;
   } 
 };
 
@@ -207,6 +205,29 @@ const playStop = () => {
     videoStream.getVideoTracks()[0].enabled = true;
   }
 };
+
+//Hand raise
+var isHandRaised = false;
+document.getElementById("hand-raise")
+  .addEventListener("click", function() {
+    isHandRaised = !isHandRaised;
+    if(isHandRaised) {
+      socket.emit('raiseHand', {
+        userName
+      });
+    }
+  });
+
+  socket.on('handRaised', function(user) {
+    console.log(user.userName)
+    popUp.innerHTML = ''
+    popUp.innerHTML += `<p>Hand raised by ${user.userName}</p>`
+    popUp.classList.add('show');
+
+    setTimeout(function(){
+      popUp.classList.remove('show');
+    }, 5000);
+  })
 
 //Share screen
 document.getElementById("shareScreen")

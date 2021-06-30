@@ -68,8 +68,6 @@ io.on("connection", (socket) => {
       users[dashID] = [user];
     }
 
-    console.log(users[dashID][socket.id]);
-
     //Emitting username to client
     socket.to(dashID).emit("user-connected", userID, userName);
 
@@ -80,6 +78,10 @@ io.on("connection", (socket) => {
     socket.on("chat-message", (message, userName) => {
       io.to(dashID).emit("chat-message", { message: message, name: userName });
     });
+
+    socket.on('raiseHand', (userName) => {
+      io.to(dashID).emit('handRaised', userName);
+    })
 
     //Remove user from memory when they disconnect
     socket.on("disconnect", () => {

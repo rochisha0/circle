@@ -13,6 +13,10 @@
   overflow-y: auto;
 }
 
+.inbox h5{
+  padding: 5px;
+}
+
 .message__history {
   padding: 5px;
 }

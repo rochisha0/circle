@@ -12,14 +12,22 @@
         <header class="site-header">
             <%- include ('partials/header.ejs'); -%>
         </header>
+        <div class="popup">
+            <span class="popuptext"></span>
+        </div>
         <div class = "videos">
             <div id="video-slides">
                 
             </div>
         </div>
+        <div class = "control-block">
         <div class="controls">
             <%- include ('partials/controls.ejs'); -%>
         </div>
+        <div class="side-controls">
+            <%- include ('partials/side-controls.ejs'); -%>
+        </div>
+    </div>
     </div>
         <%- include ('partials/chat.ejs'); -%>
         <%- include ('partials/attendee.ejs'); -%>

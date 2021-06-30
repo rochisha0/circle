@@ -30,6 +30,10 @@ body {
   align-items: center;
 }
 
+.controls-block {
+  display: flex;
+}
+
 .controls {
   padding: 5px;
   background-color: rgb(239, 245, 248);
@@ -38,4 +42,46 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.popup {
+  position: relative;
+  margin-top: 50px;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup .popuptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 47%;
+  margin-left: -80px;
+}
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }
