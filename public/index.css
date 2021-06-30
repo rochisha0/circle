@@ -1,47 +1,47 @@
 .index-content {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .index-content p {
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 40px;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 40px;
 }
 
 .index-content input {
-    margin-bottom: 20px;
-    height: 50px;
-    color: grey;
-    border-radius: 10px;
-    display: grid;
-    outline: none;
-    border: none;
-    background-color: rgb(240, 238, 238);
-    padding: 2px;
+  margin-bottom: 20px;
+  height: 50px;
+  color: grey;
+  border-radius: 10px;
+  display: grid;
+  outline: none;
+  border: none;
+  background-color: rgb(240, 238, 238);
+  padding: 2px;
 }
 
 ::placeholder {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .index-content .main-box {
-    padding: 70px;
-    border-radius: 20px;
-    background-color: white;
-    align-items: center;
-    display: grid;
-    align-items: center;
-    text-align: center;
+  padding: 70px;
+  border-radius: 20px;
+  background-color: white;
+  align-items: center;
+  display: grid;
+  align-items: center;
+  text-align: center;
 }
 
 .index-content .name {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .index-content form {
-    display: grid;
+  display: grid;
 }

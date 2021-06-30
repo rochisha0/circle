@@ -2,8 +2,8 @@ const socket = io("/");
 const videoSlides = document.getElementById("video-slides");
 const peer = new Peer({
   secure: true,
-  host: 'peerjs-server.herokuapp.com',
-  port: '443',
+  host: "peerjs-server.herokuapp.com",
+  port: "443",
 });
 const myVideo = document.createElement("video");
 // Mute your own stream
@@ -15,8 +15,8 @@ const inputField = document.querySelector(".message_form__input");
 const messageForm = document.querySelector(".message_form");
 const messageBox = document.querySelector(".messages__history");
 const fallback = document.querySelector(".fallback");
-const users = document.querySelector('.users');
-const popUp = document.querySelector('.popuptext');
+const users = document.querySelector(".users");
+const popUp = document.querySelector(".popuptext");
 
 //add message in chat box
 const addNewMessage = ({ user, message }) => {
@@ -48,12 +48,13 @@ const addNewMessage = ({ user, message }) => {
 //Fetch username from url
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const userName = urlParams.get('username');
+const userName = urlParams.get("username");
 
 const peers = {};
 
 let videoStream;
-navigator.mediaDevices.getUserMedia({
+navigator.mediaDevices
+  .getUserMedia({
     video: true,
     audio: true,
   })
@@ -75,8 +76,8 @@ navigator.mediaDevices.getUserMedia({
 
         call.on("close", () => {
           video.remove();
-      })
-      peers[call.peer] = call;
+        });
+        peers[call.peer] = call;
       },
       function (err) {
         console.log("Failed to get local stream", err);
@@ -103,7 +104,6 @@ navigator.mediaDevices.getUserMedia({
     });
 
     socket.on("chat-message", function (data) {
-
       //Append message
       addNewMessage({
         user: data.message.username,
@@ -116,12 +116,12 @@ peer.on("open", (id) => {
   socket.emit("join-room", DASH_ID, id, userName);
 });
 
-socket.on('online-users', (data) =>{
-  users.innerHTML = ''
-  data.forEach(user => {
-      users.innerHTML += `<p>${user}</p>`
+socket.on("online-users", (data) => {
+  users.innerHTML = "";
+  data.forEach((user) => {
+    users.innerHTML += `<p>${user}</p>`;
   });
-})
+});
 
 socket.on("user-disconnected", (userID) => {
   if (peers[userID]) peers[userID].close();
@@ -149,37 +149,35 @@ let chat = false;
 let userList = false;
 //Toggle chat container
 const toggleChat = () => {
-  console.log(userList, chat)
-  if(!chat){
+  console.log(userList, chat);
+  if (!chat) {
     document.querySelector(".attendee-container").style.display = "none";
     document.querySelector(".chat-container").style.display = "flex";
     document.querySelector(".dashboard-left").style.flex = "0.8";
     chat = !chat;
     userList = false;
   }
-    //chatOff();
-  else{
+  //chatOff();
+  else {
     document.querySelector(".chat-container").style.display = "none";
     document.querySelector(".dashboard-left").style.flex = "1";
     chat = !chat;
-  } 
+  }
 };
 
 const toggleUserList = () => {
-  console.log(userList, chat)
-  if(!userList){
+  console.log(userList, chat);
+  if (!userList) {
     document.querySelector(".chat-container").style.display = "none";
     document.querySelector(".attendee-container").style.display = "flex";
     document.querySelector(".dashboard-left").style.flex = "0.8";
     userList = !userList;
     chat = false;
-  }
-    
-  else{
+  } else {
     document.querySelector(".attendee-container").style.display = "none";
     document.querySelector(".dashboard-left").style.flex = "1";
     userList = !userList;
-  } 
+  }
 };
 
 //Toggle Audio
@@ -208,61 +206,59 @@ const playStop = () => {
 
 //Hand raise
 var isHandRaised = false;
-document.getElementById("hand-raise")
-  .addEventListener("click", function() {
-    isHandRaised = !isHandRaised;
-    if(isHandRaised) {
-      socket.emit('raiseHand', {
-        userName
-      });
-    }
-  });
+document.getElementById("hand-raise").addEventListener("click", function () {
+  isHandRaised = !isHandRaised;
+  if (isHandRaised) {
+    socket.emit("raiseHand", {
+      userName,
+    });
+  }
+});
 
-  socket.on('handRaised', function(user) {
-    console.log(user.userName)
-    popUp.innerHTML = ''
-    popUp.innerHTML += `<p>Hand raised by ${user.userName}</p>`
-    popUp.classList.add('show');
+socket.on("handRaised", function (user) {
+  console.log(user.userName);
+  popUp.innerHTML = "";
+  popUp.innerHTML += `<p>Hand raised by ${user.userName}</p>`;
+  popUp.classList.add("show");
 
-    setTimeout(function(){
-      popUp.classList.remove('show');
-    }, 5000);
-  })
+  setTimeout(function () {
+    popUp.classList.remove("show");
+  }, 5000);
+});
 
 //Share screen
-document.getElementById("shareScreen")
-  .addEventListener("click", function() {
-    navigator.mediaDevices.getDisplayMedia({cursor:true})
-    .then(screenStream=>{
-      Object.values(peers).map(peer => {
-        console.log(peer)
-        peer.peerConnection.getSenders().map(sender => {
-            if(sender.track.kind == "video") {
-              sender.replaceTrack(screenStream.getVideoTracks()[0])
-            }
-        })
+document.getElementById("shareScreen").addEventListener("click", function () {
+  navigator.mediaDevices
+    .getDisplayMedia({ cursor: true })
+    .then((screenStream) => {
+      Object.values(peers).map((peer) => {
+        console.log(peer);
+        peer.peerConnection.getSenders().map((sender) => {
+          if (sender.track.kind == "video") {
+            sender.replaceTrack(screenStream.getVideoTracks()[0]);
+          }
+        });
       });
-      myVideo.srcObject=screenStream
+      myVideo.srcObject = screenStream;
 
       screenStream.getTracks()[0].onended = () => {
-        Object.values(peers).map(peer => {
-          peer.peerConnection.getSenders().map(sender => {
-              if(sender.track.kind == "video") {
-                sender.replaceTrack(videoStream.getVideoTracks()[0]);
-              }
-          })
+        Object.values(peers).map((peer) => {
+          peer.peerConnection.getSenders().map((sender) => {
+            if (sender.track.kind == "video") {
+              sender.replaceTrack(videoStream.getVideoTracks()[0]);
+            }
+          });
         });
-        myVideo.srcObject=videoStream
-      }
-  })
-})
+        myVideo.srcObject = videoStream;
+      };
+    });
+});
 
-document.getElementById("endCall")
-  .addEventListener("click", function() {
-    myVideo.remove()
-    peer.destroy()
-    history.go(-1);
-  })
+document.getElementById("endCall").addEventListener("click", function () {
+  myVideo.remove();
+  peer.destroy();
+  history.go(-1);
+});
 
 //Toggle micbutton
 const micOn = () => {
