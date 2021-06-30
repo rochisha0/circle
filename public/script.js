@@ -209,33 +209,32 @@ const playStop = () => {
 };
 
 //Share screen
-document.getElementById("shareScreen").addEventListener("click", function () {
-  navigator.mediaDevices
-    .getDisplayMedia({ cursor: true })
-    .then((screenStream) => {
-      Object.values(peers).map((myPeer) => {
-        myPeer.peerConnection?.getSenders().map((sender) => {
-          if (sender.track.kind == "video") {
-            sender
-              .replaceTrack(screenStream.getVideoTracks()[0])
-              .then((res) => console.log(res));
-          }
-        });
+document.getElementById("shareScreen")
+  .addEventListener("click", function() {
+    navigator.mediaDevices.getDisplayMedia({cursor:true})
+    .then(screenStream=>{
+      Object.values(peers).map(peer => {
+        console.log(peer)
+        peer.peerConnection.getSenders().map(sender => {
+            if(sender.track.kind == "video") {
+              sender.replaceTrack(screenStream.getVideoTracks()[0])
+            }
+        })
       });
-      myVideo.srcObject = screenStream;
+      myVideo.srcObject=screenStream
 
       screenStream.getTracks()[0].onended = () => {
-        Object.values(peers).map((myPeer) => {
-          myPeer.peerConnection?.getSenders().map((sender) => {
-            if (sender.track.kind == "video") {
-              sender.replaceTrack(callStream.getVideoTracks()[0]);
-            }
-          });
+        Object.values(peers).map(peer => {
+          peer.peerConnection.getSenders().map(sender => {
+              if(sender.track.kind == "video") {
+                sender.replaceTrack(videoStream.getVideoTracks()[0]);
+              }
+          })
         });
-        myVideo.srcObject = videoStream;
-      };
-    });
-});
+        myVideo.srcObject=videoStream
+      }
+  })
+})
 
 document.getElementById("endCall")
   .addEventListener("click", function() {
