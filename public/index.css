@@ -15,13 +15,13 @@
 .index-content input {
   margin-bottom: 20px;
   height: 50px;
-  color: grey;
+  color: rgb(73, 72, 72);
   border-radius: 10px;
   display: grid;
   outline: none;
   border: none;
   background-color: rgb(240, 238, 238);
-  padding: 2px;
+  padding: 7px;
 }
 
 ::placeholder {
