@@ -13,6 +13,10 @@
   overflow-y: auto;
 }
 
+.inbox-messages {
+  padding: 5px;
+}
+
 .inbox h5 {
   padding: 5px;
 }
@@ -25,10 +29,8 @@
   background-color: rgb(169, 236, 210);
   border-radius: 10px;
   padding: 5px;
-  max-width: 50%;
-  margin: 2px;
-  margin-right: 0;
   font-family: Verdana;
+  margin-bottom: 5px;
 }
 
 .received__message p {
@@ -36,8 +38,8 @@
   border-radius: 10px;
   padding: 5px;
   max-width: 75%;
-  margin: 0;
   font-family: Verdana;
+  margin-bottom: 5px;
 }
 
 .received__message,
@@ -45,11 +47,15 @@
   font-size: small;
 }
 
+.sent__message {
+  margin-left: 50%;
+}
+
 .message__author {
-  font-size: x-small;
+  font-size: small;
   text-align: left;
   color: rgb(107, 106, 106);
-  padding-right: 5px;
+  padding-right: 7px;
   font-family: Verdana;
 }
 
