@@ -88,7 +88,6 @@ io.on("connection", (socket) => {
       socket.to(dashID).emit("user-disconnected", userID);
       users[dashID].forEach((user, index) => {
         if (user[socket.id]) {
-          console.log(user[socket.id]);
           users[dashID].splice(index, 1);
         }
         //Send online users array
