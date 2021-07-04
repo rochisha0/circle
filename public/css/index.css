@@ -24,6 +24,10 @@
   padding: 7px;
 }
 
+.index-content img {
+  height: 70px;
+}
+
 ::placeholder {
   font-weight: 600;
 }

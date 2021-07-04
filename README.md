@@ -1,6 +1,6 @@
 # Circle
 
-![Logo](/public/assets/Circle.png)
+![Logo](public/assets/Circle.png)
 A multifunctional video calling app created as a part of Microsoft Engage'21.
 
 ## Features
