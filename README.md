@@ -1,12 +1,13 @@
 # Circle
 
-![Logo](public/assets/Circle.png)
+![Logo](https://github.com/rochisha0/circle/blob/master/public/assets/circle.png)
 A multifunctional video calling app created as a part of Microsoft Engage'21.
 
 ## Features
 - There can be multiple rooms at one moment
 - Multiple users in one room
 - Ability to chat with other users
+- Mute your video/ audio
 - Ability to share your screen
 - See the other participant's names
 - Raise hand during the call
@@ -39,9 +40,11 @@ I am using PeerJS an open source API that wraps WebRTC to create a peer-to-peer 
 
 ## To do
 
-* people container ui
-* Add comments
-* css in one folder
+* Picture in picture layout
+* Flip the video
+* Record video
+* Azure Hosting
+* Create ppt for agile
 
 ## References
 

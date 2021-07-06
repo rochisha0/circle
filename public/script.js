@@ -1,5 +1,4 @@
 const socket = io("/");
-const videoSlides = document.getElementById("video-slides");
 const peer = new Peer();
 const myVideo = document.createElement("video");
 // Mute your own stream
@@ -13,14 +12,11 @@ const messageBox = document.querySelector(".messages__history");
 const fallback = document.querySelector(".fallback");
 const users = document.querySelector(".users");
 const popUp = document.querySelector(".popuptext");
+const videoSlides = document.getElementById("video-slides");
+const myVideoSlides = document.getElementById("my-video");
 
 //add message in chat box
 const addNewMessage = ({ user, message }) => {
-  const time = new Date();
-  const formattedTime = time.toLocaleString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-  });
 
   const receivedMsg = `
   <div class="incoming__message">
@@ -57,7 +53,7 @@ navigator.mediaDevices
   .then((stream) => {
     //Append your video
     videoStream = stream;
-    addVideoFrontend(myVideo, stream);
+    addMyVideoFrontend(myVideo, stream);
 
     //Answer call
     peer.on(
@@ -132,6 +128,15 @@ function connectTheNewUser(userID, stream) {
   call.on("stream", function (remoteStream) {
     addVideoFrontend(video, remoteStream);
   });
+}
+
+//Append my video
+function addMyVideoFrontend(video, stream) {
+  video.srcObject = stream;
+  video.addEventListener("loadedmetadata", () => {
+    video.play();
+  });
+  myVideoSlides.append(video);
 }
 
 //Append the stream in grid
@@ -263,6 +268,41 @@ document.getElementById("shareScreen")
       }
   })
 })
+// record screen
+
+let recorder;
+let chunks = [];
+var options={
+  mimeType: "video/webm; codecs=vp9"
+}
+const recordScreen = () => {
+  navigator.mediaDevices.getDisplayMedia({
+    video: { mediaSource: "screen" },
+    audio: true
+  }).then(recordStream => {
+    
+    recorder = new MediaRecorder(recordStream, options);
+    recorder.start();
+    recorder.ondataavailable = e => chunks.push(e.data);
+    
+    recordStream.getTracks()[0].onended = () => {
+      recorder.stop();
+      const completeBlob = new Blob(chunks, { type: "video/webm" });
+      console.log(URL.createObjectURL(completeBlob));
+      //Download
+      const a = document.createElement("a")
+      a.style.display = "none";
+      a.href = URL.createObjectURL(completeBlob);
+      a.download = 'recordedvideo.mp4';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+      }, 100);
+      chunks = [];
+    }
+  })
+}
 
 //end call
 const endCall = () => {

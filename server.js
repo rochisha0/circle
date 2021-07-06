@@ -1,15 +1,7 @@
 const express = require("express");
-
-//Express instance
 const app = express();
-
-//Defining port
 const port = process.env.PORT || 5000;
-
-//http server
 const server = require("http").Server(app);
-
-//Import socket.io
 const io = require("socket.io")(server);
 
 //Import peerjs
@@ -78,6 +70,7 @@ io.on("connection", (socket) => {
       io.to(dashID).emit("chat-message", { message: message, name: userName });
     });
 
+    //Emit username when user raised hand
     socket.on("raiseHand", (userName) => {
       io.to(dashID).emit("handRaised", userName);
     });

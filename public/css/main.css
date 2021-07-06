@@ -1,9 +1,26 @@
-video {
-  height: 400px;
-  width: 500px;
+.video-slides {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+}
+.video-slides video{
+  height: 300px;
+  width: 400px;
   object-fit: cover;
   padding: 8px;
   border-radius: 20px;
+}
+
+.my-video video{
+  margin-top: 100px;
+  height: 150px;
+  width: 250px;
+  object-fit: cover;
+  padding: 8px;
+  border-radius: 20px;
+  float: right;
+  margin: 0px;
 }
 
 body {
@@ -23,12 +40,6 @@ body {
   flex-direction: column;
 }
 
-.videos {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .controls-block {
   display: flex;
