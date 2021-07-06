@@ -17,7 +17,6 @@ const myVideoSlides = document.getElementById("my-video");
 
 //add message in chat box
 const addNewMessage = ({ user, message }) => {
-
   const receivedMsg = `
   <div class="incoming__message">
     <div class="received__message">
@@ -152,8 +151,8 @@ let chat = 0;
 let userList = 0;
 //Toggle chat container
 const toggleChat = () => {
-  console.log(userList, chat)
-  if(!chat){
+  console.log(userList, chat);
+  if (!chat) {
     //document.querySelector(".chat").style.display = "flex";
     document.querySelector(".attendee-container").style.display = "none";
     document.querySelector(".chat-container").style.display = "flex";
@@ -162,19 +161,17 @@ const toggleChat = () => {
     userList = 0;
     chatOn();
     userOff();
-  }
-  
-  else{
+  } else {
     //document.querySelector(".chat").style.display = "none";
     document.querySelector(".chat-container").style.display = "none";
     document.querySelector(".dashboard-left").style.flex = "1";
     chat = 0;
     chatOff();
-  } 
+  }
 };
 const toggleUserList = () => {
-  console.log(userList, chat)
-  if(!userList){
+  console.log(userList, chat);
+  if (!userList) {
     document.querySelector(".chat-container").style.display = "none";
     document.querySelector(".attendee-container").style.display = "flex";
     document.querySelector(".dashboard-left").style.flex = "0.8";
@@ -182,16 +179,13 @@ const toggleUserList = () => {
     chat = 0;
     userOn();
     chatOff();
-  }
-    
-  else{
+  } else {
     document.querySelector(".attendee-container").style.display = "none";
     document.querySelector(".dashboard-left").style.flex = "1";
     userList = 0;
     userOff();
-  } 
+  }
 };
-
 
 //Toggle Audio
 const muteUnmute = () => {
@@ -240,69 +234,72 @@ socket.on("handRaised", function (user) {
   }, 5000);
 });
 
-
 //Share screen
-document.getElementById("shareScreen")
-  .addEventListener("click", function() {
-    navigator.mediaDevices.getDisplayMedia({cursor:true})
-    .then(screenStream=>{
-      Object.values(peers).map(peer => {
-        console.log(peer)
-        peer.peerConnection.getSenders().map(sender => {
-            if(sender.track.kind == "video") {
-              console.log(sender.track.kind)
-              sender.replaceTrack(screenStream.getVideoTracks()[0])
-            }
-        })
-      });
-      myVideo.srcObject=screenStream
-      screenStream.getTracks()[0].onended = () => {
-        Object.values(peers).map(peer => {
-          peer.peerConnection.getSenders().map(sender => {
-              if(sender.track.kind == "video") {
-                sender.replaceTrack(videoStream.getVideoTracks()[0]);
-              }
-          })
+document.getElementById("shareScreen").addEventListener("click", function () {
+  navigator.mediaDevices
+    .getDisplayMedia({
+      video: { cursor: always },
+      audio: true,
+    })
+    .then((screenStream) => {
+      Object.values(peers).map((peer) => {
+        console.log(peer);
+        peer.peerConnection.getSenders().map((sender) => {
+          if (sender.track.kind == "video") {
+            console.log(sender.track.kind);
+            sender.replaceTrack(screenStream.getVideoTracks()[0]);
+          }
         });
-        myVideo.srcObject=videoStream
-      }
-  })
-})
+      });
+      myVideo.srcObject = screenStream;
+      screenStream.getTracks()[0].onended = () => {
+        Object.values(peers).map((peer) => {
+          peer.peerConnection.getSenders().map((sender) => {
+            if (sender.track.kind == "video") {
+              sender.replaceTrack(videoStream.getVideoTracks()[0]);
+            }
+          });
+        });
+        myVideo.srcObject = videoStream;
+      };
+    });
+});
 // record screen
 
 let recorder;
 let chunks = [];
-var options={
-  mimeType: "video/webm; codecs=vp9"
-}
+var options = {
+  mimeType: "video/webm; codecs=vp9",
+};
 const recordScreen = () => {
-  navigator.mediaDevices.getDisplayMedia({
-    video: { mediaSource: "screen" },
-    audio: true
-  }).then(recordStream => {
-    
-    recorder = new MediaRecorder(recordStream, options);
-    recorder.start();
-    recorder.ondataavailable = e => chunks.push(e.data);
-    
-    recordStream.getTracks()[0].onended = () => {
-      recorder.stop();
-      const completeBlob = new Blob(chunks, { type: "video/webm" });
-      console.log(URL.createObjectURL(completeBlob));
-      //Download
-      const a = document.createElement("a")
-      a.style.display = "none";
-      a.href = URL.createObjectURL(completeBlob);
-      a.download = 'recordedvideo.mp4';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(() => {
-        document.body.removeChild(a);
-      }, 100);
-      chunks = [];
-    }
-  })
-}
+  navigator.mediaDevices
+    .getDisplayMedia({
+      video: { mediaSource: "screen" },
+      audio: true,
+    })
+    .then((recordStream) => {
+      recorder = new MediaRecorder(recordStream, options);
+      recorder.start();
+      recorder.ondataavailable = (e) => chunks.push(e.data);
+
+      recordStream.getTracks()[0].onended = () => {
+        recorder.stop();
+        const completeBlob = new Blob(chunks, { type: "video/webm" });
+        console.log(URL.createObjectURL(completeBlob));
+        //Download
+        const a = document.createElement("a");
+        a.style.display = "none";
+        a.href = URL.createObjectURL(completeBlob);
+        a.download = "recordedvideo.mp4";
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+          document.body.removeChild(a);
+        }, 100);
+        chunks = [];
+      };
+    });
+};
 
 //end call
 const endCall = () => {
@@ -382,7 +379,7 @@ const userOn = () => {
   </svg>
   `;
   document.querySelector(".people-button").innerHTML = html;
-}
+};
 
 const userOff = () => {
   const html = `
@@ -391,4 +388,4 @@ const userOff = () => {
   </svg>
   `;
   document.querySelector(".people-button").innerHTML = html;
-}
+};

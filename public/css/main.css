@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 350px;
 }
-.video-slides video{
+.video-slides video {
   height: 300px;
   width: 400px;
   object-fit: cover;
@@ -12,7 +12,7 @@
   border-radius: 20px;
 }
 
-.my-video video{
+.my-video video {
   margin-top: 100px;
   height: 150px;
   width: 250px;
@@ -39,7 +39,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 
 .controls-block {
   display: flex;

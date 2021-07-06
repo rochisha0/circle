@@ -1,9 +1,11 @@
 # Circle
 
 ![Logo](https://github.com/rochisha0/circle/blob/master/public/assets/circle.png)
-A multifunctional video calling app created as a part of Microsoft Engage'21.
+
+A multifunctional video calling app (MS Teams Clone) created as a part of Microsoft Engage'21.
 
 ## Features
+
 - There can be multiple rooms at one moment
 - Multiple users in one room
 - Ability to chat with other users
@@ -11,6 +13,7 @@ A multifunctional video calling app created as a part of Microsoft Engage'21.
 - Ability to share your screen
 - See the other participant's names
 - Raise hand during the call
+- Record your screen and audio
 
 ## How to call other users?
 
@@ -25,6 +28,7 @@ Enter the same roomname in the homepage to connect with other users.
 - The app is running on `localhost:5000`
 
 ## How I planned this app?
+
 See [plan](PLAN.md)
 
 ## Tech stack used
@@ -40,12 +44,9 @@ I am using PeerJS an open source API that wraps WebRTC to create a peer-to-peer 
 
 ## To do
 
-* Picture in picture layout
-* Flip the video
-* Record video
-* Azure Hosting
-* Create ppt for agile
+- Leave meeting button
+- Flip the video
+- Azure Hosting
+- Create ppt for agile
 
 ## References
-
-
