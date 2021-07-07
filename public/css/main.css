@@ -5,8 +5,8 @@
   min-height: 350px;
 }
 .video-slides video {
-  height: 300px;
-  width: 400px;
+  height: 350px;
+  width: 500px;
   object-fit: cover;
   padding: 8px;
   border-radius: 20px;
