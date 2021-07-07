@@ -235,10 +235,10 @@ socket.on("handRaised", function (user) {
 });
 
 //Share screen
-document.getElementById("shareScreen").addEventListener("click", function () {
+const shareScreen = () => {
   navigator.mediaDevices
     .getDisplayMedia({
-      video: { cursor: always },
+      video: { cursor: true },
       audio: true,
     })
     .then((screenStream) => {
@@ -263,9 +263,9 @@ document.getElementById("shareScreen").addEventListener("click", function () {
         myVideo.srcObject = videoStream;
       };
     });
-});
-// record screen
+};
 
+// record screen
 let recorder;
 let chunks = [];
 var options = {
