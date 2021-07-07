@@ -19,6 +19,25 @@
   background-color: rgb(239, 245, 248);
   border-radius: 20px;
   max-height: 75px;
+  display: flex;
+}
+
+.boxed .name {
+  flex: 92%;
+}
+
+.boxed .button-leave {
+  flex: 8%;
+  background-color: rgb(31, 43, 31);
+  color: white;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-family: Verdana;
+  font-size: 12px;
+  max-height: 40px;
+  padding: 5px;
 }
 
 a {
@@ -27,7 +46,7 @@ a {
   color: #000;
 }
 
-.boxed h4 {
+.boxed .name h4 {
   padding-top: 5px;
   font-family: Verdana;
   font-size: 1.2em;
@@ -36,7 +55,7 @@ a {
   padding-bottom: 4px;
 }
 
-.boxed p {
+.boxed .name p {
   font-family: Verdana;
   font-size: 0.9em;
   padding-left: 15px;
