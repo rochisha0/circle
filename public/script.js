@@ -16,9 +16,10 @@ const videoSlides = document.getElementById("video-slides");
 const myVideoSlides = document.getElementById("my-video");
 
 //add message in chat box
-const addNewMessage = ({ user, message }) => {
+const addNewMessage = ({ user, message, image }) => {
   const receivedMsg = `
   <div class="incoming__message">
+    <div class="chat__image"> <img src="${image}"> </div>
     <div class="received__message">
     <span class="message__author">${user}</span>
       <p>${message}</p>
@@ -31,6 +32,7 @@ const addNewMessage = ({ user, message }) => {
     <span class="message__author"> You </span>
       <p>${message} </p>
     </div>
+    <div class="chat__image"> <img src="${image}"> </div>
   </div>`;
 
   messageBox.innerHTML += user === userName ? myMsg : receivedMsg;
@@ -84,7 +86,7 @@ navigator.mediaDevices
       socket.emit("chat-message", {
         message: inputField.value,
         username: userName,
-        image: userImage
+        image: userImage,
       });
 
       inputField.value = "";
@@ -95,6 +97,7 @@ navigator.mediaDevices
       addNewMessage({
         user: data.message.username,
         message: data.message.message,
+        image: data.message.image,
       });
     });
   });

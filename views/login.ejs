@@ -48,7 +48,7 @@ function onSignIn(googleUser) {
         console.log('Signed in as: ' + xhr.responseText);
         if(xhr.responseText == 'success'){
             signOut();
-            location.assign('/room')
+            location.assign('/index')
         }
     };
     xhr.send(JSON.stringify({token : id_token}));

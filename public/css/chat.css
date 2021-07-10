@@ -42,13 +42,15 @@
   margin-bottom: 5px;
 }
 
+.outgoing__message,
+.incoming__message {
+  display: flex;
+}
+
 .received__message,
 .sent__message {
   font-size: small;
-}
-
-.sent__message {
-  margin-left: 50%;
+  min-width: 70%;
 }
 
 .message__author {
@@ -76,4 +78,13 @@
   outline: none;
   display: flex;
   padding: 10px 10px;
+}
+
+.chat__image {
+  padding: 5px;
+}
+
+.chat__image img{
+  border-radius: 50%;
+  max-width: 40px;
 }

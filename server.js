@@ -50,12 +50,12 @@ app.post('/login', (req,res)=>{
 
 })
 
-app.get("/room", (req, res) => {
+app.get("/index", (req, res) => {
   res.render("index");
 });
 
 //posting the values from index and redirecting to dashboard
-app.post("/room", checkAuthenticated, (req, res) => {
+app.post("/index", checkAuthenticated, (req, res) => {
   roomname = req.body.roomname;
   res.redirect(`/${roomname}`);
 });
@@ -124,8 +124,8 @@ io.on("connection", (socket) => {
     io.to(dashID).emit("online-users", getUsers(users[dashID]));
 
     //Emitting chat message
-    socket.on("chat-message", (message, userName) => {
-      io.to(dashID).emit("chat-message", { message: message, name: userName});
+    socket.on("chat-message", (message, userName, userImage) => {
+      io.to(dashID).emit("chat-message", { message: message, name: userName, image:userImage});
     });
 
     //Emit username when user raised hand
@@ -135,7 +135,6 @@ io.on("connection", (socket) => {
 
     //Remove user from memory when they disconnect
     socket.on("disconnect", () => {
-      console.log("disconnect");
       socket.to(dashID).emit("user-disconnected", userID);
       users[dashID].forEach((user, index) => {
         if (user[socket.id]) {
