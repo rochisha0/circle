@@ -1,0 +1,11 @@
+.welcome {
+    background-color: white;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.welcome-img img{
+    max-height: 300px;
+}

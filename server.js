@@ -3,6 +3,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
+const cookieParser = require("cookie-parser");
+
+//Authentication with Google Auth
+const {OAuth2Client} = require('google-auth-library');
+const CLIENT_ID = '36522074585-bs3s7dt60b20l7na8pmp2r2dekh2smfo.apps.googleusercontent.com'
+const client = new OAuth2Client(CLIENT_ID);
 
 //Import peerjs
 const { ExpressPeerServer } = require("peer");
@@ -16,26 +22,77 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use("/peerjs", peerServer);
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cookieParser());
+
 
 //rendering the index first
 app.get("/", (req, res) => {
+  res.render("login");
+});
+
+app.post('/login', (req,res)=>{
+  let token = req.body.token;
+  async function verify() {
+      const ticket = await client.verifyIdToken({
+          idToken: token,
+          audience: CLIENT_ID,  
+      });
+      const payload = ticket.getPayload();
+      const userid = payload['sub'];
+    }
+    verify()
+    .then(()=>{
+        res.cookie('session-token', token);
+        res.send('success')
+    })
+    .catch(console.error);
+
+})
+
+app.get("/room", (req, res) => {
   res.render("index");
 });
 
 //posting the values from index and redirecting to dashboard
-app.post("/room", (req, res) => {
+app.post("/room", checkAuthenticated, (req, res) => {
   roomname = req.body.roomname;
-  username = req.body.username;
-  res.redirect(`/${roomname}?username=${username}`);
+  res.redirect(`/${roomname}`);
 });
 
-app.get("/:num", (req, res) => {
-  res.render("dashboard", { dashID: req.params.num });
+app.get("/:num", checkAuthenticated, (req, res) => {
+  let user = req.user;
+  res.render("dashboard", { dashID: req.params.num, user });
 });
+
+//Function to check if authenticated
+function checkAuthenticated(req, res, next){
+
+  let token = req.cookies['session-token'];
+
+  let user = {};
+  async function verify() {
+      const ticket = await client.verifyIdToken({
+          idToken: token,
+          audience: CLIENT_ID,  
+      });
+      const payload = ticket.getPayload();
+      user.name = payload.name;
+      user.email = payload.email;
+      user.picture = payload.picture;
+    }
+    verify()
+    .then(()=>{
+        req.user = user;
+        next();
+    })
+    .catch(err=>{
+        res.redirect('/login')
+    })
+}
 
 const users = {};
-
-//getting users
+//Funtion to get users online in a room
 function getUsers(arr) {
   onlineUsers = [];
   arr.forEach((onlineUser) => {
@@ -44,15 +101,16 @@ function getUsers(arr) {
   return onlineUsers;
 }
 
+module.exports = {getUsers}
 io.on("connection", (socket) => {
-  socket.on("join-room", (dashID, userID, userName) => {
+  socket.on("join-room", (dashID, userID, userName, userImage) => {
     var user = {};
 
     //Joining the socket room
     socket.join(dashID);
 
     //storing users connected in a room
-    user[socket.id] = userName;
+    user[socket.id] = [userName, userImage];
     if (users[dashID]) {
       users[dashID].push(user);
     } else {
@@ -67,7 +125,7 @@ io.on("connection", (socket) => {
 
     //Emitting chat message
     socket.on("chat-message", (message, userName) => {
-      io.to(dashID).emit("chat-message", { message: message, name: userName });
+      io.to(dashID).emit("chat-message", { message: message, name: userName});
     });
 
     //Emit username when user raised hand

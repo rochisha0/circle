@@ -27,3 +27,4 @@
     - Implemented the record screen feature with WebRTC
     - Changed layout of video screen
     - Made some more UI improvements
+    - Added full screen mode

@@ -14,6 +14,8 @@ A multifunctional video calling app (MS Teams Clone) created as a part of Micros
 - See the other participant's names
 - Raise hand during the call
 - Record your screen and audio
+- Full screen mode
+- User Authentication using Google Auth
 
 ## How to call other users?
 
@@ -44,4 +46,4 @@ I am using socket.io an open source library implement Web sockets. Web socket pr
 
 See [plan](PLAN.md)
 
-*If you have any questions reach out at rochisha.agarwal2302@gmail.com*
+*If you have any questions, reach out to me at rochisha.agarwal2302@gmail.com*
