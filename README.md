@@ -20,12 +20,18 @@ A multifunctional video calling app (MS Teams Clone) created as a part of Micros
 
 Enter the same roomname in the homepage to connect with other users.
 
-## Steps to run the project
+## Getting started
+
+### Prerequisites
+
+Install [node](https://nodejs.org/en/) in your system.
+
+### Run locally
 
 - Fork and clone the repository.
 - Navigate to the repository.
     ```
-    cd clone
+    cd circle
     ```
 
 - Install nodemon 
@@ -33,12 +39,16 @@ Enter the same roomname in the homepage to connect with other users.
     npm install -g nodemon
     ```
 
-- Run `npm install` for downloading the dependencies
+- For downloading the dependencies
+    ```
+    npm install
+    ```
+
 - Run 
-        ```
-        nodemon server.js
-        ```
-        
+    ```
+    nodemon server.js
+    ```
+
 - The app is running on `localhost:5000`
 
 ## Tech stack used

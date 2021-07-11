@@ -85,7 +85,7 @@ function checkAuthenticated(req, res, next) {
       next();
     })
     .catch((err) => {
-      res.redirect("/login");
+      res.redirect("/");
     });
 }
 
