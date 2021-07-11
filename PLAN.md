@@ -6,16 +6,16 @@ The app was created using Agile methodology. After each week the app was deploye
 
 A minimum of two participants should be able connect with each other using the product to have a video conversation.
 
-## Designs created for the app
+## UI design created for the app
 
-![Design](https://github.com/rochisha0/circle/blob/master/public/assets/design.jpeg)
+![Design](https://github.com/rochisha0/circle/blob/master/public/assets/Design.jpeg)
 
 ## Timeline for the application
 
 - Week 1 :
 
   - Chose to create a web application using NodeJS and Express, due to the familiarity.
-  - Went on to create the design of the app.
+  - Went on to create the UI of the app.
   - Also, implemented the minimum functionality using PeerJs and Socket.io.
 
   - Bugs reported

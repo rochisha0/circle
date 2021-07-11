@@ -23,9 +23,22 @@ Enter the same roomname in the homepage to connect with other users.
 ## Steps to run the project
 
 - Fork and clone the repository.
-- Install nodemon `npm install -g nodemon`
+- Navigate to the repository.
+    ```
+    cd clone
+    ```
+
+- Install nodemon 
+    ```
+    npm install -g nodemon
+    ```
+
 - Run `npm install` for downloading the dependencies
-- Run `nodemon server.js`
+- Run 
+        ```
+        nodemon server.js
+        ```
+        
 - The app is running on `localhost:5000`
 
 ## Tech stack used
