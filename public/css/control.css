@@ -26,3 +26,11 @@
   font-size: smaller;
   font-family: Verdana;
 }
+
+@media (max-width: 700px) {
+  
+  .record-button, 
+  .share-button {
+    display: none;
+  }
+}

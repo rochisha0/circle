@@ -61,3 +61,10 @@ a {
   padding-left: 15px;
   color: grey;
 }
+
+@media (max-width: 700px) {
+  
+  .name {
+    display: none;
+  }
+}

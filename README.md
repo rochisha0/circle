@@ -14,7 +14,6 @@ A multifunctional video calling app (MS Teams Clone) created as a part of Micros
 - See the other participant's names
 - Raise hand during the call
 - Record your screen and audio
-- Full screen mode
 - User Authentication using Google Auth
 
 ## How to call other users?
@@ -36,14 +35,23 @@ Enter the same roomname in the homepage to connect with other users.
 
 ## How video call works?
 
-I am using PeerJS an open source API that wraps WebRTC to create a peer-to-peer connection and helps to accomplish features like video call, share screen, record screen etc. WebRTC facilitates Real Time Communication (RTC) between browsers, mobile platfors and IOTs and allow then to communicate via common set of protocols. WebRTC mainly uses: signalling, ICE candidates, STUN server and TURN server for Real Time Communication.
+I am using [PeerJS](https://peerjs.com/) an open source API that wraps WebRTC to create a peer-to-peer connection and helps to accomplish features like video call, share screen, record screen etc. WebRTC facilitates Real Time Communication (RTC) between browsers, mobile platfors and IOTs and allow then to communicate via common set of protocols. WebRTC mainly uses: signalling, ICE candidates, STUN server and TURN server for Real Time Communication.
 
 ## How web sockets work?
 
-I am using socket.io an open source library implement Web sockets. Web socket provide a biderectional communication between web clients and servers. It came handy to implement features like text chat, user list and raise hand.
+I am using [socket.io](https://socket.io/) an open source library that implements web sockets. Web socket provide a biderectional communication between web clients and servers. It came handy to implement features like text chat, user list and raise hand.
 
-## How I planned this app?
+## Design Documentation
 
 See [plan](PLAN.md)
 
-*If you have any questions, reach out to me at rochisha.agarwal2302@gmail.com*
+## App Flow
+
+![App Flow](https://github.com/rochisha0/circle/blob/master/public/assets/appflow.png)
+
+## Screenshots
+
+
+## Contact
+
+_If you have any questions, reach out to me at rochisha.agarwal2302@gmail.com_

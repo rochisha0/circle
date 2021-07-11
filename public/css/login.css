@@ -1,11 +1,30 @@
 .welcome {
-    background-color: white;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
+  background-color: white;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
 }
 
-.welcome-img img{
-    max-height: 300px;
+.welcome-img img {
+  max-height: 300px;
 }
+
+.footer p {
+    text-align: center;
+}
+
+.footer i {
+    color: red;
+}
+
+@media (max-width: 700px) {
+  .welcome h4 {
+      font-size: small;
+  }
+
+  .welcome-img img {
+      max-width: 100%;
+  }
+}
+

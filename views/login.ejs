@@ -23,36 +23,15 @@
     </header>
     <div class="welcome">
         <div class="welcome-img"><img src="assets/welcome.png" alt="welcome" /></div>
-        <h3>Video call anyone anywhere for free.</h3>
+        <h4>Video call anyone anywhere for free.</h4>
     </div>
     <div class="welcome">
       <div class="welcome-img"><img src="assets/chat.png" alt="chat" /></div>
-      <h3>Chat and share screen within your circle</h3>
+      <h4>Chat and share screen within your circle</h4>
   </div>
-    <script>
-      function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-    console.log('User signed out.');
-    });
-}
-
-function onSignIn(googleUser) {
-    console.log("Yes")
-    var profile = googleUser.getBasicProfile();
-    var id_token = googleUser.getAuthResponse().id_token;
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/login');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function() {
-        console.log('Signed in as: ' + xhr.responseText);
-        if(xhr.responseText == 'success'){
-            signOut();
-            location.assign('/index')
-        }
-    };
-    xhr.send(JSON.stringify({token : id_token}));
-  }
-    </script>
+  <div class="footer">
+    <p class="love">Made with <i class="bi bi-heart-fill"></i> by Rochisha</p>
+  </div>
+    <script src="auth.js"> </script>
 </body>
 </html>
