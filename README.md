@@ -15,6 +15,7 @@ A multifunctional video calling app (MS Teams Clone) created as a part of Micros
 - Raise hand during the call
 - Record your screen and audio
 - User Authentication using Google Auth
+- Responsive UI
 
 ## How to call other users?
 
@@ -72,8 +73,9 @@ See [plan](PLAN.md)
 
 ![App Flow](https://github.com/rochisha0/circle/blob/master/public/assets/appflow.png)
 
-## Screenshots
+## Demo of the application
 
+[Click Here](https://youtu.be/mF-nfoyAMOY) to view the demo.
 
 ## Contact
 
