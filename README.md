@@ -73,9 +73,17 @@ See [plan](PLAN.md)
 
 ![App Flow](https://github.com/rochisha0/circle/blob/master/public/assets/appflow.png)
 
-## Demo of the application
+## Video Demo of the application
 
 [Click Here](https://youtu.be/mF-nfoyAMOY) to view the demo.
+
+## Hosted site
+
+[Click Here](https://fathomless-shore-39878.herokuapp.com/) to view the site.
+
+## Screenshot
+
+![SS](https://github.com/rochisha0/circle/blob/master/public/assets/ss.png)
 
 ## Contact
 
